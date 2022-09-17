@@ -1,0 +1,11 @@
+{% extends "events/base.html" %} {% block content %}
+
+<h1>Update Profile:</h1>
+
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{user_update.as_p}} {{profile_update.as_p}}
+    <input type="submit" value="Update" class="btn btn-primary">
+</form>
+
+{% endblock %}

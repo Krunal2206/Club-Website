@@ -1,0 +1,28 @@
+{% extends "events/base.html" %} {% block content %}
+
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <h1 class="my-3">Feedback</h1>
+
+    <form class="row g-3" action="" method="post">
+        {% csrf_token %}
+
+        <div class="col-md-6">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" />
+        </div>
+        <div class="col-md-6">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="test" class="form-control" id="subject" name="subject"
+                placeholder="Describe Your Subject Here..." />
+        </div>
+        <div class="mb-3">
+            <label for="message" class="form-label">Message</label>
+            <textarea class="form-control" id="message" rows="3" name="message"
+                placeholder="Describe Your Message Here..."></textarea>
+        </div>
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Feedback</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

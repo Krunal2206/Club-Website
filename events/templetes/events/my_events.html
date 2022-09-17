@@ -1,0 +1,36 @@
+{% extends "events/base.html" %} {% block content %}
+
+
+{% if user.is_authenticated %}
+
+<h1>My Events</h1>
+
+{% for event in events %}
+
+<div class="card my-4">
+    <h5 class="card-header">{{event.name}}</h5>
+    <div class="card-body">
+        <h5 class="card-title">Vanue: {{event.venue}}</h5>
+        <p class="card-text">
+        <ul>
+            <li><strong>Date:</strong> {{event.event_date}}</li>
+            <li><strong>Manager:</strong> {{event.manager}}</li>
+            <li><strong>Description:</strong> {{event.description}}</li><br>
+            <li><strong>Attendees:</strong><br>
+                {% for user in event.attendees.all %}
+                {{user}}<br>
+                {% endfor %}
+            </li>
+        </ul>
+        </p>
+    </div>
+</div>
+
+{% endfor %}
+
+{% else %}
+<h1>Sorry! You must be logged in to view this page...</h1>
+<a href="{% url 'login' %}">Login Here</a>
+{% endif %}
+
+{% endblock %}

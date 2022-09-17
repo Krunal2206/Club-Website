@@ -1,0 +1,31 @@
+{% extends "events/base.html" %} {% block content %} {% if searched %}
+<h1>You looking for {{searched}}</h1>
+{% if venues %}
+<table class="table table-hover table-striped table-dark table-bordered text-center mt-4">
+  <thead>
+    <tr>
+      <th scope="col">Venue Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Contact Phone</th>
+      <th scope="col">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for venue in venues %}
+    <tr>
+      <td><a href="{% url 'show_venue' venue.id %}" class="text-white">{{venue}}</a></td>
+      <td>{{venue.address}}</td>
+      <td>{{venue.phone}}</td>
+      <td>
+        <a href="{% url 'update_venue' venue.id %}" class="btn btn-primary btn-sm">UPDATE</a>
+        <a href="{% url 'delete_venue' venue.id %}" class="btn btn-danger mx-1 btn-sm">DELETE</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<h4>Hey! There is no such data available.</h4>
+{% endif %} {% else %}
+<h1>Hey! You forgot to search for a venue.</h1>
+{% endif %} {% endblock %}

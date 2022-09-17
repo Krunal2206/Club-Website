@@ -1,0 +1,55 @@
+{% extends "events/base.html" %} {% block content %}
+
+<div class="card my-4">
+    <h5 class="card-header">Search Event</h5>
+    <div class="card-body">
+        <p class="card-text">
+        <form class="row" role="search" action="{% url 'searched_event' %}" method="post">
+            {% csrf_token %}
+            <div class="col-10">
+                <input class="form-control mb-3 col-6" type="search" placeholder="Search Events" aria-label="Search"
+                    name="searched">
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </div>
+        </form>
+        </p>
+    </div>
+</div>
+
+
+{% if searched %}
+<h1>You looking for {{searched}}</h1>
+
+{% if events %}
+{% for event in events %}
+
+<div class="card my-4">
+    <h5 class="card-header">{{event.name}}</h5>
+    <div class="card-body">
+        <h5 class="card-title">Vanue: {{event.venue}}</h5>
+        <p class="card-text">
+        <ul>
+            <li><strong>Date:</strong> {{event.event_date}}</li>
+            <li><strong>Manager:</strong> {{event.manager}}</li>
+            <li><strong>Description:</strong> {{event.description}}</li><br>
+            <li><strong>Attendees:</strong><br>
+                {% for user in event.attendees.all %}
+                {{user}}<br>
+                {% endfor %}
+            </li>
+        </ul>
+        </p>
+    </div>
+</div>
+{% endfor %}
+{% else %}
+<h4>Hey! There is no such data available.</h4>
+{% endif %}
+
+{% else %}
+<h1>Hey! You forgot to search for a event.</h1>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,26 @@
+#header {
+  height: 40px;
+  background-color: darkcyan;
+  color: white;
+}
+#header a:link,
+#header a:visited {
+  color: chartreuse;
+}
+#branding h1 {
+  color: white;
+}
+#content-related {
+  background-color: darkcyan;
+  color: white;
+}
+.module caption {
+  background-color: darkcyan;
+  color: white;
+}
+.main > .content {
+  background-image: url("https://imgs.search.brave.com/NFq99ZOVQXYHMDydd1pwo1BsYnE6svEi8nS72g9azHM/rs:fit:1200:1200:1/g:ce/aHR0cHM6Ly93d3cu/cGNjbGVhbi5pby93/cC1jb250ZW50L2dh/bGxlcnkvcm9hZC1o/ZC13YWxscGFwZXJz/LzExMjIzNS5qcGc");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}

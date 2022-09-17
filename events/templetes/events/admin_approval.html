@@ -1,0 +1,62 @@
+{% extends "events/base.html" %} {% block content %}
+<h1>Admin Dashboard</h1>
+
+<div class="card my-4">
+    <h5 class="card-header">Event - Venue - User Counts</h5>
+    <div class="card-body">
+        <p class="card-text">
+        <ul>
+            <li><strong>Event Count:</strong> {{event}}</li>
+            <li><strong>Venue Count:</strong> {{venue}}</li>
+            <li><strong>User Count:</strong> {{user}}</li>
+        </ul>
+        </p>
+    </div>
+</div>
+
+<table class="table table-hover table-striped table-dark table-bordered text-center my-4">
+    <thead>
+        <tr>
+            <th scope="col">Venue List</th>
+            <th scope="col">Events</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for venue in venues %}
+        <tr>
+            <td><a href="{% url 'show_venue' venue.id %}" class="text-white">{{venue}}</a></td>
+            <td><a href="{% url 'venue_events' venue.id %}" class="btn btn-primary">List Events</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<h1>Admin Event Approval Portal</h1>
+
+<form action="" method="post">
+    {% csrf_token %}
+    <table class="table table-hover table-striped table-dark table-bordered text-center my-4">
+        <thead>
+            <tr>
+                <th scope="col">Events</th>
+                <th scope="col">Approved</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in events %}
+            <tr>
+                <td>{{event}}</td>
+                <td>
+                    {% if event.approved %}
+                    <input class="form-check-input" type="checkbox" value={{event.id}} name="boxes" checked />
+                    {% else %}
+                    <input class="form-check-input" type="checkbox" value={{event.id}} name="boxes" />
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <input type="submit" value="Update Approval" class="btn btn-primary" />
+</form>
+{% endblock %}

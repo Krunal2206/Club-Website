@@ -1,0 +1,26 @@
+{% extends "events/base.html" %} {% block content %}
+<h1>Your Event: {{event}}</h1>
+
+<div class="card my-4">
+    <h5 class="card-header">{{event.name}}</h5>
+    <div class="card-body">
+        <h5 class="card-title">Vanue: {{event.venue}}</h5>
+        <p class="card-text">
+        <ul>
+            <li><strong>Date:</strong> {{event.event_date}}</li>
+            <li><strong>Days Left:</strong> {{event.Left_days}}</li>
+            <li><strong>Past Event:</strong> {{event.Is_past}}</li>
+            <li><strong>Manager:</strong> {{event.manager}}</li>
+            <li><strong>Approved:</strong> {{event.approved}}</li>
+            <li><strong>Description:</strong> {{event.description}}</li><br>
+            <li><strong>Attendees:</strong><br>
+                {% for user in event.attendees.all %}
+                {{user}}<br>
+                {% endfor %}
+            </li>
+        </ul>
+        </p>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends "events/base.html" %} {% block content %}
+
+{% if user.is_authenticated %}
+
+{% if submitted %}
+
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong>Success!</strong> Your event was submitted successfully.
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
+<center>
+    <a href="{% url 'add_event' %}">
+        <input type="button" value="Back" class="btn btn-primary" />
+    </a>
+</center>
+
+{% else %}
+
+<div class="shadow p-3 mb-5 bg-body rounded">
+    <h1 class="text-center my-3">Add Event To Database</h1>
+
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <center>
+            <input type="submit" value="Submit" class="btn btn-primary" />
+        </center>
+    </form>
+</div>
+
+{% endif %}
+
+{% else %}
+<h1>Sorry! You must be logged in to view this page...</h1>
+<a href="{% url 'login' %}">Login Here</a>
+
+{% endif %} {% endblock %}
